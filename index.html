@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arafath Bank Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="login-area" class="">
+        <h1 class="text-center">Welcome to Arafath Bank Website</h1>
+        <div class="submit-area">
+            <h3 class="pb-2">Login</h3>
+            <input type="text" class="form-control mb-3" placeholder="Enter your email here">
+            <input type="password" class="form-control mb-3" name="" id="" placeholder="Enter your password">
+            <button id="login" class="btn btn-success">Login</button>
+        </div>
+    </div>
+    <div id="transaction-area">
+        <div class="welcome-sight">
+            <h1 class="text-center">Welcome</h1>
+            <h5 class="text-center">Here recive 1000$ as welcome Gift</h5>
+            <h5 class="text-center mb-4">we made deposit system free. You can deposit Unlimited $ but you can't withdraw.</h5>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h1>$ <span id="carrentDeposit">00</span></h1>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h1>$ <span id="carrentWithdraw">00</span></h1>
+                </div>
+                </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h1>$ <span id="carrentBalance">1000</span></h1>
+                </div>
+                </div>
+                <!-- col-sm-4 col-lg-4 col-xl-4 -->
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h3>Deposit</h3>
+                    <input id="depositAmount" type="text" class="form-control" placeholder="$ amount you want to deposit">
+                    <p style="color: rgb(22, 202, 37);">You can deposit Free</p>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button></div>
+                </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h3>Withdaw</h3>
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="$ amount you want to withdraw">
+                    <p style="color: red;">Withdraw Carrently Off</p>
+                    <button id="addWithdraw" class="btn btn-success">Withdraw</button></div>
+                </div>
+        </div>
+    </div>
+    <script>
+        //login area event handler
+        const loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click", function(){
+            const loginArea = document.getElementById("login-area")
+            loginArea.style.display = "none"
+            const transactionArea = document.getElementById("transaction-area");
+            transactionArea.style.display = "block"
+        })
+        //depositbuttoneventhandler 
+        const depositBtn = document.getElementById("addDeposit");
+        depositBtn.addEventListener("click", function(){
+            const depositAmount = document.getElementById("depositAmount").value;
+            const depositNumber = parseFloat(depositAmount);
+
+            const carrentDeposit = document.getElementById("carrentDeposit").innerText;
+            const carrentDepositNumber = parseFloat(carrentDeposit);
+            const totalDeposit = depositNumber + carrentDepositNumber;
+            document.getElementById("carrentDeposit").innerText = totalDeposit;
+
+            updateSpanText("carrentBalance", depositNumber)
+
+            document.getElementById("depositAmount").value = "";
+        })
+        //withevent handler
+
+        // const withdrawBtn = document.getElementById("addWithdraw")
+        // withdrawBtn.addEventListener("click", function(){
+        //     const withdrawNumber = getInputNumber("withdrawAmount")
+        //     updateSpanText("carrentWithdraw", withdrawNumber)
+        // })
+        // function getInputNumber(id){
+        //     const withdrawAmount = document.getElementById(id).value;
+        //     const withdrawNumber = parseFloat(withdrawAmount);
+        //     return withdrawNumber;
+        // }
+
+        function updateSpanText(id, depositNumber){
+            const carrentBalance = document.getElementById("carrentBalance").innerText;
+            const carrentBalanceNumber = parseFloat(carrentBalance);
+            const totalBalance = depositNumber + carrentBalanceNumber;
+            document.getElementById(id).innerText = totalBalance;
+        }
+    </script>
+</body>
+</html>
